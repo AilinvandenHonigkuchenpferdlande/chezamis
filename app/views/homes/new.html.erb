@@ -1,0 +1,29 @@
+   <h1>Add your home</h1>
+    <br>
+
+    <%= simple_form_for @home,
+    wrapper: :horizontal_form,
+    wrapper_mappings: {
+      boolean:       :horizontal_boolean,
+      radio_buttons: :horizontal_collection,
+
+    } do |f| %>
+
+    <%= f.error_notification %>
+
+    <%= f.input :address %>
+
+    <%= f.input :postcode %>
+
+    <%= f.input :city %>
+
+    <%= f.input :country %>
+
+    <%= f.input :description %>
+
+    <div class="form-group row mb-0">
+      <div class="col-sm-9 offset-sm-3">
+        <%= f.button :submit, class: "btn-primary" %>
+      </div>
+    </div>
+    <% end %>
