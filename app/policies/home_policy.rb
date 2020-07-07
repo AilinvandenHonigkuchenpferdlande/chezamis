@@ -6,10 +6,10 @@ class HomePolicy < ApplicationPolicy
   end
 
   def create?
-    true # anyone can create a restaurant
+    true # anyone can create a home
   end
 
   def show?
-    true
+    true #anyone can see a home
   end
 end
