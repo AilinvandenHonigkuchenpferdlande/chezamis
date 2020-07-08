@@ -12,4 +12,16 @@ class HomePolicy < ApplicationPolicy
   def show?
     true #anyone can see a home
   end
+
+  def edit?
+    record.user == user ? true : false # I can edit if I created the home
+  end
+
+  def update?
+    record.user == user ? true : false
+  end
+
+  def destroy?
+    record.user == user ? true : false
+  end
 end

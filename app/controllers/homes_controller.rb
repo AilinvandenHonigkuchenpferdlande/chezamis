@@ -2,7 +2,7 @@ class HomesController < ApplicationController
   before_action :set_home, only: [:show, :edit, :update, :destroy]
 
   def index
-    @homes = Home.all
+    @homes = policy_scope(Home).order(created_at: :desc)
   end
 
   def show

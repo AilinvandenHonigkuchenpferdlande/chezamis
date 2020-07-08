@@ -1,1 +1,8 @@
-index.html.erb
+<h1>All the homes listed (to be updated)</h1>
+
+<% @homes.each do |home| %>
+ <h2><%= home.user.first_name %>'s home</h2>
+ <p>Address: <%= home.address %></p>
+ <p>City: <%= home.postcode %>, <%= home.city %></p>
+ <p>Country: <%= home.country %></p>
+<% end %>
