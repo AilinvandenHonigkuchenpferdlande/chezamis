@@ -1,18 +1,27 @@
-<h1>All the homes listed (to be updated)</h1>
+<h1>My friends' homes</h1>
 
 <% @homes.each do |home| %>
-<h2><%= home.user.first_name %>'s home</h2>
-<p>Address: <%= home.address %></p>
-<p>City: <%= home.postcode %>, <%= home.city %></p>
-<p>Country: <%= home.country %></p>
-<p>Description: <%= home.description %></p>
+<% unless current_user.friendships.find_by(friend_id: home.user_id).nil? %>
 
-<% if policy(home).edit? %>
-<%= link_to edit_home_path(home) do %><i class="fas fa-pencil-alt"></i><% end %>
+  <% if current_user.friendships.find_by(friend_id: home.user_id).status == 'accepted' %>
+
+    <h2><%= link_to "#{home.user.first_name}'s home", home_path(home) %></h2>
+    <p>Address: <%= home.address %></p>
+    <p>City: <%= home.postcode %>, <%= home.city %></p>
+    <p>Country: <%= home.country %></p>
+    <p>Description: <%= home.description %></p>
+
+    <% if policy(home).edit? %>
+      <%= link_to edit_home_path(home) do %><i class="fas fa-pencil-alt"></i><% end %>
+    <% end %>
+
+    <% if policy(home).destroy? %>
+      <%= link_to home_path(home), method: :delete, data: { confirm: "Are you sure?" } do %><i class="fas fa-trash-alt"></i><% end %>
+    <% end %>
+
+  <% end %>
+<% end %>
 <% end %>
 
-<% if policy(home).destroy? %>
-<%= link_to home_path(home), method: :delete, data: { confirm: "Are you sure?" } do %><i class="fas fa-trash-alt"></i><% end %>
-<% end %>
-
-<% end %>
+<h2>Share your home with friends!</h2>
+<%= link_to "Add your home", new_home_path %>
