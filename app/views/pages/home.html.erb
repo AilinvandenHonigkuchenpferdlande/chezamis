@@ -9,6 +9,7 @@
   <% if user_signed_in? %>
     <div class="home-right-box">
       <h5>Connect with your friends</h5>
+
       <ul>
       <% @users.each do |user| %>
       <div class="card">
@@ -26,6 +27,9 @@
       </div>
       <% end %>
       </ul>
+
+      <h5>Check out: </h5>
+      <%= link_to "your friends' homes!", homes_path %>
     </div>
 
   <% else %>
