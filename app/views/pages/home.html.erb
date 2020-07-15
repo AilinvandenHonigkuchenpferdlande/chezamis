@@ -6,38 +6,62 @@
     <h4>In friends we trust.</h4>
 
   </div>
-  <div class="home-registration-form">
-    <h4>Join your friends</h4>
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-    <%= f.error_notification %>
-      <div class="form-inputs">
-        <%= f.input :first_name,
-                    required: true,
-                    autofocus: true,
-                    input_html: { autocomplete: "first_name" }%>
-        <%= f.input :last_name,
-                    required: true,
-                    autofocus: true,
-                    input_html: { autocomplete: "last_name" }%>
-        <%= f.input :email,
-                    required: true,
-                    autofocus: true,
-                    input_html: { autocomplete: "email" }%>
-        <%= f.input :password,
-                    required: true,
-                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                    input_html: { autocomplete: "new-password" } %>
-        <%= f.input :password_confirmation,
-                    required: true,
-                    input_html: { autocomplete: "new-password" } %>
+  <% if user_signed_in? %>
+    <div class="home-right-box">
+      <h5>Connect with your friends</h5>
+      <ul>
+      <% @users.each do |user| %>
+      <div class="card">
+      <p><strong><%= user.first_name %><%= user.last_name %></strong></p>
+      <% unless current_user == user %>
+        <% if current_user.friendships.find_by(friend_id: user.id).nil? %>
+          <button class="add-friend"><%= link_to "Add friend", add_friend_pages_path(user.id), method: :post  %></button>
+        <% elsif current_user.friendships.find_by(friend_id: user.id).status == 'requested' %>
+          <button ><%= link_to "Confirm", accept_friend_pages_path(user.id), method: :post  %></button>
+          <button ><%= link_to "Delete", decline_friend_pages_path(user.id), method: :delete  %></button>
+        <% else %>
+          <%= current_user.friendships.find_by(friend_id: user.id).status %>
+        <% end %>
+      <% end %>
       </div>
-
-
-      <div class="form-actions">
-        <%= f.button :submit, "Sign up" %>
-      </div>
+      <% end %>
+      </ul>
     </div>
+
+  <% else %>
+    <div class="home-right-box">
+      <h4>Join your friends</h4>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+      <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :first_name,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "first_name" }%>
+          <%= f.input :last_name,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "last_name" }%>
+          <%= f.input :email,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "email" }%>
+          <%= f.input :password,
+                      required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation,
+                      required: true,
+                      input_html: { autocomplete: "new-password" } %>
+        </div>
+
+
+        <div class="form-actions">
+          <%= f.button :submit, "Sign up" %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 
 
