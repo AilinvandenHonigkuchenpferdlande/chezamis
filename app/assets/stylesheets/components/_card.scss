@@ -1,0 +1,28 @@
+.card-home {
+  display: flex;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 10px 0px;
+
+  img {
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+    object-position: 50% 50%;
+
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+
+  h5 {
+    font-size: 18px;
+    font-weight: bold;
+    color: grey;
+  }
+}
+
+.card-home-description {
+  max-width: 600px;
+  padding: 20px 20px;
+}
