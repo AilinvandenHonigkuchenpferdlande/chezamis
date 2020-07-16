@@ -1,0 +1,46 @@
+// navbar login form
+.flex {
+  display: flex;
+  column-gap: 10px;
+}
+
+
+.optional {
+  font-size: 15px;
+  font-family: Nunito;
+}
+
+.form-control.password.optional {
+  padding: 3px 6px;
+  height: 30px;
+}
+
+.form-control.string.email.optional {
+  padding: 3px 6px;
+  height: 30px;
+}
+
+.form-group {
+  margin-bottom: 8px;
+}
+
+.form-group.password.optional {
+  margin: 0px 10px 5px 10px;
+}
+
+input.btn {
+  height: 30px;
+  background-color: $ca-babyblue;
+  margin: 30px 90px 0px 0px;
+  font-family: Nunito;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+input.btn:hover {
+    background: magenta;
+    color: white;
+}
+
+// sign up form
+

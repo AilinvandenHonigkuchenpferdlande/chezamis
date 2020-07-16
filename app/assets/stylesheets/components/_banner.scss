@@ -1,9 +1,10 @@
 .banner {
-  background-image: linear-gradient(rgba(231, 233, 241, 0.2),rgba(231, 233, 241, 0.4)), image-url('banner_1.jpg');
+  background-image: linear-gradient(rgba(231, 233, 241, 0.4),rgba(231, 233, 241, 0.1)), image-url('banner_1.jpg');
   background-size: cover;
   background-position: center;
   width: 100vw;
-  height: 100vh;
+  // height: auto;
+  height: 90vh;
   position: absolute;
   // top: -77px;
   left: 0;
