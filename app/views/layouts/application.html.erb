@@ -12,15 +12,20 @@
   </head>
 
   <body>
-    <div>
-        <%= render 'shared/navbar' %>
-    </div>
+    <div id="page-container">
+      <div>
+          <%= render 'shared/navbar' %>
+      </div>
+      <div id="content-wrap">
 
-    <%= yield %>
 
+        <%= yield %>
 
-    <div class="footer" id="footer">
-        <%= render 'shared/footer' %>
+      </div>
+
+      <div class="footer" id="footer">
+          <%= render 'shared/footer' %>
+      </div>
     </div>
   </body>
 </html>
