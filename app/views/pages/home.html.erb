@@ -16,10 +16,10 @@
       <p><strong><%= user.first_name %><%= user.last_name %></strong></p>
       <% unless current_user == user %>
         <% if current_user.friendships.find_by(friend_id: user.id).nil? %>
-          <button class="add-friend"><%= link_to "Add friend", add_friend_pages_path(user.id), method: :post  %></button>
+          <button class="add-friend"><%= link_to "Add friend", add_friend_pages_path(user.id), method: :post, remote: true  %></button>
         <% elsif current_user.friendships.find_by(friend_id: user.id).status == 'requested' %>
-          <button ><%= link_to "Confirm", accept_friend_pages_path(user.id), method: :post  %></button>
-          <button ><%= link_to "Delete", decline_friend_pages_path(user.id), method: :delete  %></button>
+          <button ><%= link_to "Confirm", accept_friend_pages_path(user.id), method: :post, remote: true  %></button>
+          <button ><%= link_to "Delete", decline_friend_pages_path(user.id), method: :delete, remote: true  %></button>
         <% else %>
           <%= current_user.friendships.find_by(friend_id: user.id).status %>
         <% end %>
