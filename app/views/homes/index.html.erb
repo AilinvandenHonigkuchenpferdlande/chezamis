@@ -1,27 +1,38 @@
-<h1>My friends' homes</h1>
+<div class="container-index">
+  <h1>My friends' homes</h1>
 
-<% @homes.each do |home| %>
-<% unless current_user.friendships.find_by(friend_id: home.user_id).nil? %>
+  <div class="cards">
+    <% @homes.each do |home| %>
+    <% unless current_user.friendships.find_by(friend_id: home.user_id).nil? %>
 
-  <% if current_user.friendships.find_by(friend_id: home.user_id).status == 'accepted' %>
+      <% if current_user.friendships.find_by(friend_id: home.user_id).status == 'accepted' %>
 
-    <h2><%= link_to "#{home.user.first_name}'s home", home_path(home) %></h2>
-    <p>Address: <%= home.address %></p>
-    <p>City: <%= home.postcode %>, <%= home.city %></p>
-    <p>Country: <%= home.country %></p>
-    <p>Description: <%= home.description %></p>
+      <div class="card-home">
 
-    <% if policy(home).edit? %>
-      <%= link_to edit_home_path(home) do %><i class="fas fa-pencil-alt"></i><% end %>
+        <img src="https://images.unsplash.com/photo-1542718610-a1d656d1884c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80" alt="placeholder image">
+
+        <div class="card-home-description">
+          <h2><%= link_to "Chez #{home.user.first_name} in #{home.city}", home_path(home) %></h2>
+          <p><%= home.address %>, <%= home.postcode %>, <%= home.city %>, <%= home.country %></p>
+          <hr>
+          <h5>Description</h5>
+          <p><%= home.description %></p>
+
+          <% if policy(home).edit? %>
+            <%= link_to edit_home_path(home) do %><i class="fas fa-pencil-alt"></i><% end %>
+          <% end %>
+
+          <% if policy(home).destroy? %>
+            <%= link_to home_path(home), method: :delete, data: { confirm: "Are you sure?" } do %><i class="fas fa-trash-alt"></i><% end %>
+          <% end %>
+        </div>
+
+      </div>
+      <% end %>
     <% end %>
-
-    <% if policy(home).destroy? %>
-      <%= link_to home_path(home), method: :delete, data: { confirm: "Are you sure?" } do %><i class="fas fa-trash-alt"></i><% end %>
     <% end %>
+  </div>
 
-  <% end %>
-<% end %>
-<% end %>
-
-<h2>Share your home with friends!</h2>
-<%= link_to "Add your home", new_home_path %>
+  <h2>Share your home with friends!</h2>
+  <%= link_to "Add your home", new_home_path %>
+</div>
