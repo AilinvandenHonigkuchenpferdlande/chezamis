@@ -1,8 +1,24 @@
 <div class="container">
-  <h1><%=  @home.user.first_name %>'s Home</h1>
-  <p>Address: <%= @home.address %></p>
-  <p><%= @home.postcode %>, <%= @home.city %></p>
-  <hr>
-  <p>Description: <%= @home.description %> €</p>
-  <hr>
+  <div class="container-show">
+    <img src="https://images.unsplash.com/photo-1542718610-a1d656d1884c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80" alt="placeholder image">
+    <div class="card-show-description">
+      <h1>Chez <%=  @home.user.first_name %> in <%= @home.city %></h1>
+      <p><%= @home.address %>, <%= @home.postcode %>, <%= @home.city %>, <%= @home.country %></p>
+      <hr>
+      <h5>Description</h5>
+      <p><%= @home.description %></p>
+
+      <% if policy(@home).edit? %>
+      <%= link_to edit_home_path(@home) do %><i class="fas fa-pencil-alt"></i><% end %>
+      <% end %>
+
+      <% if policy(@home).destroy? %>
+      <%= link_to home_path(@home), method: :delete, data: { confirm: "Are you sure?" } do %><i class="fas fa-trash-alt"></i><% end %>
+      <% end %>
+    </div>
+    <div class="card-home-booking">
+      <h5>Book <%= @home.user.first_name %>'s Home!</h5>
+    </div>
+  </div>
+  <%= link_to "<< back to all homes", homes_path  %>
 </div>
