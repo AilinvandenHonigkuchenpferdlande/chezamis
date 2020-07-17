@@ -1,6 +1,11 @@
-.container-index {
+.container {
   margin: 50px 20px;
   h1, h2, h5, p {
     font-family: cabin;
   }
+}
+
+.container-show {
+  display: flex;
+  margin-bottom: 30px;
 }

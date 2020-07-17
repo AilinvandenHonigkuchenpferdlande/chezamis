@@ -37,6 +37,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
+# country select gem for simple form
+gem 'country_select'
 
 group :development, :test do
   gem 'pry-byebug'
